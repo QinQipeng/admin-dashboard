@@ -1,0 +1,238 @@
+/* ----------------------------- Default Style ----------------------------- */
+@import url(./modern-normalize.css);
+@import url(./layout.css);
+
+body, h1, h2, h3, h4, h5, figure, p, ol, ul {
+  margin: 0;
+  padding: 0;
+}
+
+ol, ul {
+  list-style: none;
+  padding-inline: 0;
+}
+
+img {
+  display: block;
+  max-inline-size: 100%;
+  height: 100%;
+}
+
+input, button {
+    appearance: none;
+    background-color: transparent;
+    height: 100%;
+    border: 0px;
+    padding: 0;
+    margin: 0;   
+}
+
+label,
+button:hover {
+    cursor: pointer;
+}
+
+input[type="search"]:not(:focus, :active)::-webkit-search-cancel-button {
+  display: none;
+}
+
+/* ---------------------------- Font Family ---------------------------- */
+@font-face {
+    font-family: "roboto";
+    src: url(../assets/fonts/Roboto-VariableFont_wdth\,wght.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "alimamaShuhei";
+    src: url(../assets/fonts/AlimamaShuHeiTi-Bold.woff2) format("woff2");
+}
+
+/* --------------------- Color & Typography Scheme --------------------- */
+:root {
+    --primary-color--green: rgb(203, 255, 83);
+    --primary-color--green-hover: rgb(162, 240, 65); 
+
+    --secondary-color--grey: rgb(66, 65, 70);
+    --secondary-color--grey-drk: rgb(35, 34, 37);
+
+    --text-color: #2f2f2f;
+
+    --h1-font: bold 1.5rem "alimamaShuhei", Arial, sans-serif;
+    --h2-font: normal 600 1.2rem "roboto";
+    --h3-font: normal 600 1rem "roboto";
+
+    font-family: "roboto";
+    line-height: 1.5;
+}
+
+/* - siderbar - */
+.sidebar {
+    --icon-label-gap: 10px;
+    background-color: var(--primary-color--green);
+    padding: 5%;
+    gap: 5%;
+}
+
+.branding {
+    display: flex;
+    height: 3rem;
+    font: var(--h1-font);
+    color: var(--text-color);
+    align-items: center;
+    gap: var(--icon-label-gap)
+}
+
+.navigation li{
+    padding: 10px 12px;
+}
+
+.icon-row{
+    height: 1.5rem;
+    align-items: center;
+    font-weight: 600;
+    color: var(--text-color);
+    gap: 5%;
+}
+
+/* - header - */
+.header {
+    background-color: var(--secondary-color--grey);
+    padding: 20px 30px;
+    color: white;
+}
+
+/* - search bar - */
+.search-bar,
+.user-profile {
+    gap: 2rem;
+}
+
+.search-bar img{            /* - setting the default height for the search bar icon svg - */
+    height: 1.2rem;
+}
+
+.profile-icon img {         /* - providing profile image a round background - */
+    height: 3rem;
+    border-radius: 100%;
+    background-color: #CED6D3;
+}
+
+input[type="search"]{
+    background-color: #2f2f2f80;
+    border: 2px solid white;
+    border-radius: 1rem;
+    max-width: 40rem;
+    color: inherit;
+    height: 2rem;
+    flex: 1;
+}
+
+.user-profile > button {
+    border: 0 none transparent;
+    background-color: transparent;
+    align-items: center;
+}
+
+/* - user info - */
+.user-info .profile-icon img {
+    height: 4rem;
+}
+
+a.username {
+    color: inherit;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a.full {
+    font-size: large;
+    font-style: italic;
+}
+
+.quick-options button{
+    width: 7rem;
+    font-size: 1rem;
+    border: 0px;
+    padding: 7px 0px;
+    border-radius: 2rem;
+    margin: 7px;
+    background-color: var(--primary-color--green);
+    font-weight: 500;
+}
+
+/* - main content - */ 
+.main-content{
+    --section-gap: 1.25rem;
+    --default-text-color: white;
+    --default-border-radius: 0.25rem;
+    --default-background-color: var(--secondary-color--grey);
+    background-color: var(--secondary-color--grey-drk);
+    padding: 30px 15px;
+    gap: var(--section-gap);
+}
+
+.main-content > div > p{            /* The styling of the label in each segment */ 
+    font: var(--h2-font);
+    color: white;
+    padding-bottom: 0.5rem;
+}
+
+.card {
+    font-size: 0.8rem;
+    text-overflow: ellipsis;
+    overflow:hidden;
+    /* white-space:nowrap; */
+}
+
+.card .title{
+    font: var(--h3-font);
+}
+
+/* projects */
+.projects .card-container{
+    gap: var(--section-gap);
+}
+
+.projects .card {                   /* The cards in the projects section */ 
+    background-color: var(--default-background-color);
+    border-radius: var(--default-border-radius);
+    color: var(--default-text-color);
+    border-left: 7px solid rgb(255, 1, 149);
+    padding: 20px 15px;
+    max-height: 25vh;
+}
+
+.card .card-buttons {
+    height: 1.5rem;
+}
+
+.card-buttons button{
+    margin-left: 0.5rem;
+}
+
+/* announcements & trending*/
+.announcements .card-container,
+.trending-items .card-container {
+    background-color: var(--secondary-color--grey);
+    border-radius: var(--default-border-radius);
+    color: var(--default-text-color);
+    padding: 10px 20px;
+}
+
+.announcements .card {
+    justify-content: center;
+    padding: 10px 0px;
+}
+
+.announcements .card:not(:nth-last-child(-n+1)) {
+    border-bottom: 1px solid white;
+}
+
+/* trending */
+.trending-items .card {          /* Controlling the height of each profile */
+    height: 3rem;
+}
+
+.trending-items .card p:first-child{
+    font-weight: bold;
+}
