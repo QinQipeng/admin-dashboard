@@ -1,4 +1,4 @@
-/* ----------------------------- Default Style ----------------------------- */
+/* --------------------- Default Style --------------------- */
 @import url(./modern-normalize.css);
 @import url(./layout.css);
 
@@ -12,15 +12,15 @@ ol, ul {
   padding-inline: 0;
 }
 
-img {
+img,svg {
   display: block;
   max-inline-size: 100%;
-  height: 100%;
+  max-height: 100%;
 }
 
 input, button {
-    appearance: none;
     background-color: transparent;
+    appearance: none;
     height: 100%;
     border: 0px;
     padding: 0;
@@ -32,11 +32,11 @@ button:hover {
     cursor: pointer;
 }
 
-input[type="search"]:not(:focus, :active)::-webkit-search-cancel-button {
+input[type="search"]::-webkit-search-cancel-button {
   display: none;
 }
 
-/* ---------------------------- Font Family ---------------------------- */
+/* --------------------- Font Family --------------------- */
 @font-face {
     font-family: "roboto";
     src: url(../assets/fonts/Roboto-VariableFont_wdth\,wght.ttf) format("truetype");
@@ -47,79 +47,129 @@ input[type="search"]:not(:focus, :active)::-webkit-search-cancel-button {
     src: url(../assets/fonts/AlimamaShuHeiTi-Bold.woff2) format("woff2");
 }
 
-/* --------------------- Color & Typography Scheme --------------------- */
+/* --------------- Color & Typography Scheme --------------- */
 :root {
-    --primary-color--green: rgb(203, 255, 83);
-    --primary-color--green-hover: rgb(162, 240, 65); 
+    --primary-color--green: hsl(78, 100%, 66%);
+    --primary-color--green-hover: hsl(78, 77%, 54%);
+    --primary-color--green-clk: hsl(84, 73%, 47%);
 
     --secondary-color--grey: rgb(66, 65, 70);
     --secondary-color--grey-drk: rgb(35, 34, 37);
+    --secondary-color--grey-lt: rgb(104, 103, 106);
+    --secondary-color--grey-lter: rgb(131, 130, 133);
 
-    --text-color: #2f2f2f;
+    --tertiary-color--magenta: rgb(255, 1, 149);
 
-    --h1-font: bold 1.5rem "alimamaShuhei", Arial, sans-serif;
-    --h2-font: normal 600 1.2rem "roboto";
-    --h3-font: normal 600 1rem "roboto";
+    --default-text-color: white;
+    --default-font-family: "roboto";
 
-    font-family: "roboto";
+    --h1-font: bold 2rem "alimamaShuhei", Arial, sans-serif;
+    --h2-font: normal 600 1.2rem var(--default-font-family);
+    --h3-font: normal 600 1rem var(--default-font-family);
+
+    --profile-icon-height: 3rem;
+
+    font-family: var(--default-font-family);
     line-height: 1.5;
 }
 
-/* - siderbar - */
+/* --------------------- siderbar --------------------- */
 .sidebar {
     --icon-label-gap: 10px;
+    --text-color: #2f2f2f;
+    --gap-size: 5%;
     background-color: var(--primary-color--green);
-    padding: 5%;
-    gap: 5%;
+    gap: var(--gap-size);
 }
 
-.branding {
+.branding {         /* - The logo - */
+    height: 4rem;
     display: flex;
-    height: 3rem;
+    align-items: center;
     font: var(--h1-font);
     color: var(--text-color);
-    align-items: center;
-    gap: var(--icon-label-gap)
+    gap: var(--icon-label-gap);
+    margin: var(--gap-size) 0 0 var(--gap-size);
 }
 
 .navigation li{
-    padding: 10px 12px;
+    width: 100%;
+    height: 6vh;
 }
 
 .icon-row{
-    height: 1.5rem;
+    height: 70%;
     align-items: center;
     font-weight: 600;
     color: var(--text-color);
-    gap: 5%;
+    padding-left: calc(var(--gap-size)*2);
+    gap: var(--gap-size);
 }
 
-/* - header - */
+.navigation li:hover{
+    cursor: pointer;
+    background-color: var(--primary-color--green-hover);
+}
+
+.navigation li:active{
+    cursor: pointer;
+    background-color: var(--primary-color--green-clk);
+}
+
+/* --------------------- header --------------------- */
 .header {
     background-color: var(--secondary-color--grey);
     padding: 20px 30px;
-    color: white;
+    color: var(--default-text-color);
 }
 
-/* - search bar - */
+/* search bar */
 .search-bar,
 .user-profile {
     gap: 2rem;
 }
 
-.search-bar img{            /* - setting the default height for the search bar icon svg - */
+.search-bar img{                    /* - setting the default height for the search bar icon svg - */
     height: 1.2rem;
 }
 
-.profile-icon img {         /* - providing profile image a round background - */
-    height: 3rem;
-    border-radius: 100%;
+.profile-icon img {                 /* - providing profile image a round background - */
+    height: var(--profile-icon-height);
     background-color: #CED6D3;
+    border-radius: 100%;
 }
 
-input[type="search"]{
+.profile-icon {
+    min-width: var(--profile-icon-height);
+    position: relative;
+    cursor: pointer;
+}
+
+.profile-icon:hover::before,
+.profile-icon:active::before {       /* - pseudo-elemenet overlay on the profile - */
+    inset: 0px;
+    content: "";
+    position: absolute;
+    border-radius: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.profile-icon:active::before {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+label[for="search"] img:hover{
+    content: url(../assets/icons/search-filled.svg);
+}
+
+.notification img:hover{
+    content: url(../assets/icons/notification-filled.svg);
+}
+
+input[type="search"]{               /* - styling of the search bar - */
     background-color: #2f2f2f80;
-    border: 2px solid white;
+    border: 1.5px solid var(--secondary-color--grey-lter);
+    padding-left: 1rem;
     border-radius: 1rem;
     max-width: 40rem;
     color: inherit;
@@ -127,13 +177,12 @@ input[type="search"]{
     flex: 1;
 }
 
-.user-profile > button {
-    border: 0 none transparent;
-    background-color: transparent;
-    align-items: center;
+input[type="search"]:focus,:active{
+    outline: 0px none transparent;
+    border-color: var(--primary-color--green);
 }
 
-/* - user info - */
+/* user info */
 .user-info .profile-icon img {
     height: 4rem;
 }
@@ -160,28 +209,30 @@ a.full {
     font-weight: 500;
 }
 
-/* - main content - */ 
+.quick-options button:hover {
+    background-color: var(--primary-color--green-hover);
+}
+
+.quick-options button:active {
+    background-color: var(--primary-color--green-clk);
+}
+
+/* main content */ 
 .main-content{
     --section-gap: 1.25rem;
-    --default-text-color: white;
     --default-border-radius: 0.25rem;
     --default-background-color: var(--secondary-color--grey);
+
     background-color: var(--secondary-color--grey-drk);
     padding: 30px 15px;
     gap: var(--section-gap);
+    font-size: 0.8rem;
 }
 
 .main-content > div > p{            /* The styling of the label in each segment */ 
     font: var(--h2-font);
-    color: white;
+    color: var(--default-text-color);
     padding-bottom: 0.5rem;
-}
-
-.card {
-    font-size: 0.8rem;
-    text-overflow: ellipsis;
-    overflow:hidden;
-    /* white-space:nowrap; */
 }
 
 .card .title{
@@ -193,13 +244,13 @@ a.full {
     gap: var(--section-gap);
 }
 
-.projects .card {                   /* The cards in the projects section */ 
+.projects .card {                   /* The styling of the cards in the projects section */ 
+    border-left: 7px solid var(--tertiary-color--magenta);
     background-color: var(--default-background-color);
     border-radius: var(--default-border-radius);
     color: var(--default-text-color);
-    border-left: 7px solid rgb(255, 1, 149);
+    height:  max(10rem, 30vh);
     padding: 20px 15px;
-    max-height: 25vh;
 }
 
 .card .card-buttons {
@@ -208,6 +259,18 @@ a.full {
 
 .card-buttons button{
     margin-left: 0.5rem;
+}
+
+button.bookmark img:hover {
+    content: url(../assets/icons/bookmark-hover.svg);
+}
+
+button.inspect img:hover {
+    content: url(../assets/icons/inspect-hover.svg);
+}
+
+button.branch img:hover {
+    content: url(../assets/icons/branch-hover.svg);
 }
 
 /* announcements & trending*/
@@ -221,18 +284,21 @@ a.full {
 
 .announcements .card {
     justify-content: center;
-    padding: 10px 0px;
+    height: max(5.5rem, 12vh);
+    padding: 3px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.announcements .card:not(:nth-last-child(-n+1)) {
+.announcements .card:not(:nth-last-child(-n+1)) {   /* The white underline between each announcement cards */ 
     border-bottom: 1px solid white;
 }
 
 /* trending */
-.trending-items .card {          /* Controlling the height of each profile */
-    height: 3rem;
+.trending-items .card {                             /* Controlling the height of each profile */
+    height: var(--profile-icon-height);
 }
 
-.trending-items .card p:first-child{
+.trending-items .card p:first-child{                /* Highlight the owner name of the trending projects*/
     font-weight: bold;
 }

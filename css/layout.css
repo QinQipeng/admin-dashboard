@@ -4,7 +4,7 @@
   grid-template-columns: minmax(300px,1fr) 4fr;
   grid-template-rows:    minmax(150px,1fr) 4fr;
   height: 100vh;
-  width:  100vw;
+  width:  clamp(75rem, 100vw, 100vw);
 }
 
 .sidebar {
@@ -18,8 +18,10 @@
   flex-direction: column;
 }
 
+.navigation li,
 .icon-row {
   display: flex;
+  align-items: center;
 }
 
 .header {
@@ -38,7 +40,7 @@
 
 .header .search-bar,
 .header .user-info{
-  align-items: center;
+  min-height: 3rem;
 }
 
 .search-bar .user-profile,
